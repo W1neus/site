@@ -19,11 +19,8 @@
                     <p class="logo-subtitle">сеть салонов красоты</p>
                 </div>
                 <nav class="nav" id="mainNav">
-                    <a href="#services" class="nav-link">УСЛУГИ И ЦЕНЫ</a>
-                    <a href="#promotions" class="nav-link">АКЦИИ</a>
-                    <a href="#masters" class="nav-link">МАСТЕРА</a>
+                    <a href="#prices" class="nav-link">УСЛУГИ И ЦЕНЫ</a>
                     <a href="#gallery" class="nav-link">ГАЛЕРЕЯ</a>
-                    <a href="#products" class="nav-link">ПРОДУКЦИЯ</a>
                     <a href="#contacts" class="nav-link">КОНТАКТЫ</a>
                 </nav>
                 <button class="hamburger" id="hamburger" aria-label="Открыть меню">
@@ -35,6 +32,16 @@
         </div>
     </header>
 
+    <!-- Mobile Menu Overlay (behind menu) -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Mobile Menu (slides from right under header) -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <a href="#prices" class="nav-link">УСЛУГИ И ЦЕНЫ</a>
+        <a href="#gallery" class="nav-link">ГАЛЕРЕЯ</a>
+        <a href="#contacts" class="nav-link">КОНТАКТЫ</a>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -44,14 +51,14 @@
                     <p class="hero-subtitle">сеть салонов красоты</p>
                 </div>
                 <div class="hero-image">
-                    <img src="https://placehold.co/600x700/c4e3dd/ffffff?text=" alt="Салон красоты Восторг">
+                    <img src="p1.png" alt="Салон красоты Восторг">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <!-- Gallery Section -->
+    <section class="services" id="gallery">
         <div class="container">
             <div class="services-header">
                 <p class="services-subtitle">ЛУЧШИЕ МАСТЕРА ГОРОДА</p>
@@ -59,59 +66,108 @@
             </div>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="https://placehold.co/400x500/e8d5c4/333333?text=" alt="Короткая стрижка">
+                    <img src="p2.png" alt="Короткая стрижка">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://placehold.co/400x500/d4c4e8/333333?text=" alt="Платиновое окрашивание">
+                    <img src="p3.png" alt="Платиновое окрашивание">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://placehold.co/400x500/c4e8d5/333333?text=" alt="Градиентное окрашивание">
+                    <img src="p4.jpg" alt="Градиентное окрашивание">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Additional Sections (Placeholders) -->
-    <section class="placeholder-section" id="promotions">
+    <!-- Prices Section -->
+    <section class="prices-section" id="prices">
         <div class="container">
-            <h2>Акции</h2>
-            <p>Следите за нашими специальными предложениями</p>
+            <h2 class="section-title">УСЛУГИ И ЦЕНЫ</h2>
+            <div class="prices-grid">
+                <div class="price-card">
+                    <h3 class="price-name">Стрижка женская</h3>
+                    <p class="price-value">1500 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Стрижка мужская</h3>
+                    <p class="price-value">800 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Окрашивание сложное</h3>
+                    <p class="price-value">5000 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Окрашивание тонирование</h3>
+                    <p class="price-value">3000 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Мелирование</h3>
+                    <p class="price-value">4000 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Укладка</h3>
+                    <p class="price-value">1200 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Наращивание волос</h3>
+                    <p class="price-value">8000 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Ботокс для волос</h3>
+                    <p class="price-value">3500 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Кератиновое выпрямление</h3>
+                    <p class="price-value">4500 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Маникюр</h3>
+                    <p class="price-value">1000 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Педикюр</h3>
+                    <p class="price-value">1200 ₽</p>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Наращивание ногтей</h3>
+                    <p class="price-value">2500 ₽</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="placeholder-section" id="masters">
+    <!-- Contacts Section -->
+    <section class="contacts-section" id="contacts">
         <div class="container">
-            <h2>Мастера</h2>
-            <p>Наши профессиональные стилисты</p>
+            <h2 class="section-title">КОНТАКТЫ</h2>
+            <div class="contacts-content">
+                <div class="contacts-map">
+                    <div id="map" style="width: 100%; height: 400px; border-radius: 15px;"></div>
+                </div>
+                <div class="contacts-info">
+                    <div class="contact-item">
+                        <h3>Адрес</h3>
+                        <p>г. Москва, ул. Тверская, д. 1</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Телефон</h3>
+                        <p><a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@vostorg-salon.ru">info@vostorg-salon.ru</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Режим работы</h3>
+                        <p>Пн-Вс: 9:00 - 21:00</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="placeholder-section" id="gallery">
-        <div class="container">
-            <h2>Галерея</h2>
-            <p>Работы наших мастеров</p>
-        </div>
-    </section>
-
-    <section class="placeholder-section" id="products">
-        <div class="container">
-            <h2>Продукция</h2>
-            <p>Профессиональная косметика для волос</p>
-        </div>
-    </section>
-
-    <section class="placeholder-section" id="contacts">
-        <div class="container">
-            <h2>Контакты</h2>
-            <p>Свяжитесь с нами</p>
-        </div>
-    </section>
-
-    <!-- CTA Button -->
-    <a href="#booking" class="cta-button">
-        <span>Запись онлайн</span>
-    </a>
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="app.js"></script>
+    <script type="text/javascript" src="https://w1796403.yclients.com/widgetJS" charset="UTF-8"></script>
 </body>
 </html>

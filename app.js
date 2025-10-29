@@ -1,31 +1,56 @@
-// Mobile Menu Toggle
+// Mobile Menu Toggle - Slide from right under header
 const hamburger = document.getElementById('hamburger');
-const mainNav = document.getElementById('mainNav');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const body = document.body;
 
-hamburger.addEventListener('click', () => {
+// Toggle menu function
+function toggleMenu() {
     hamburger.classList.toggle('active');
-    mainNav.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    
+    // Prevent body scroll when menu is open
+    if (mobileMenu.classList.contains('active')) {
+        body.style.overflow = 'hidden';
+    } else {
+        body.style.overflow = '';
+    }
+}
+
+// Close menu function
+function closeMenu() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    body.style.overflow = '';
+}
+
+// Open/close menu on burger button click
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
 });
 
-// Close menu when clicking on a link
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
+// Close menu when clicking on overlay
+menuOverlay.addEventListener('click', () => {
+    closeMenu();
+});
+
+// Close menu when clicking on a mobile nav link
+const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
+mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mainNav.classList.remove('active');
+        closeMenu();
     });
 });
 
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!mainNav.contains(e.target) && !hamburger.contains(e.target)) {
-        hamburger.classList.remove('active');
-        mainNav.classList.remove('active');
-    }
-});
+// Also handle desktop nav links
+const desktopNavLinks = document.getElementById('mainNav').querySelectorAll('.nav-link');
 
 // Smooth scrolling for anchor links (enhanced)
-navLinks.forEach(link => {
+const allNavLinks = [...desktopNavLinks, ...mobileNavLinks];
+allNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
@@ -33,7 +58,7 @@ navLinks.forEach(link => {
         
         if (targetSection) {
             const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = targetSection.offsetTop - headerHeight;
+            const targetPosition = targetSection.offsetTop - headerHeight + 10;
             
             window.scrollTo({
                 top: targetPosition,
@@ -50,20 +75,14 @@ const header = document.querySelector('.header');
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
+    // Header maintains consistent height of 80px
     if (currentScroll > 100) {
-        header.style.padding = '15px 0';
+        header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.15)';
     } else {
-        header.style.padding = '20px 0';
+        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     }
     
     lastScroll = currentScroll;
-});
-
-// CTA Button click handler
-const ctaButton = document.querySelector('.cta-button');
-ctaButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Функция онлайн-записи будет доступна в ближайшее время!\n\nПозвоните нам для записи:\n+7 (XXX) XXX-XX-XX');
 });
 
 // Add animation on scroll for gallery items
@@ -87,4 +106,28 @@ galleryItems.forEach((item, index) => {
     item.style.transform = 'translateY(30px)';
     item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
     observer.observe(item);
+});
+
+// Initialize Leaflet Map (OpenStreetMap)
+window.addEventListener('load', () => {
+    // Координаты салона (легко изменяемые)
+    const salonLat = 55.7558;
+    const salonLon = 37.6173;
+    const salonName = "Салон красоты Восторг";
+    const salonAddress = "г. Москва, ул. Тверская, д. 1";
+
+    // Инициализация карты
+    const map = L.map('map').setView([salonLat, salonLon], 15);
+
+    // Добавление tiles OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19
+    }).addTo(map);
+
+    // Добавление маркера
+    L.marker([salonLat, salonLon])
+        .addTo(map)
+        .bindPopup(`<b>${salonName}</b><br>${salonAddress}`)
+        .openPopup();
 });
